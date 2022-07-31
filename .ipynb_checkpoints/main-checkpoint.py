@@ -1,5 +1,5 @@
-from Layers.Dense import DenseLayer
-from ActivationFunctions.ReLU import ReLu
+from Layers import DenseLayer
+from ActivationFunctions import ReLu
 from CreateData import spiral_data
 import matplotlib.pyplot as plt
 

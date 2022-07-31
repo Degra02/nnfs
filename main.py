@@ -1,9 +1,8 @@
-from Layers.Dense import DenseLayer
-from ActivationFunctions.ReLU import ReLu
-from ActivationFunctions.SoftMax import SoftMax
-from CreateData import spiral_data, linear_data
+from Layers import DenseLayer
+from ActivationFunctions import ReLu, SoftMax
+from CreateData import spiral_data
 import matplotlib.pyplot as plt
-from Loss import Loss_CategoricalCrossEntropy
+from Loss import CategoricalCrossEntropyLoss
 
 # Creating a random input (this is the input layer)
 X, y = spiral_data(samples=100, classes=3)
@@ -26,6 +25,6 @@ activation2.forward(dense2.output)
 print(activation2.output[:5])
 
 # Loss Calculus
-loss_function = Loss_CategoricalCrossEntropy()
+loss_function = CategoricalCrossEntropyLoss()
 loss = loss_function.calculate(activation2.output, y)
 print("Loss: ", loss)
