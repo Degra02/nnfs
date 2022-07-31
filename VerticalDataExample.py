@@ -49,16 +49,17 @@ for i in progress:
 
     predictions = np.argmax(activation2.output, axis=1)
     accuracy = np.mean(predictions == y)
-    
-    progress.set_description(f"Iter: {i+1}, Loss: {loss}, Lowest Loss: {lowest_loss}, Acc: {accuracy}")
+
     if loss < lowest_loss:
+        progress.set_description(f"Iter: {i + 1}")
+        progress.set_postfix(Lowest_Loss=lowest_loss, Accuracy=accuracy)
         best_dense1_weights = dense1.weights.copy()
         best_dense1_biases = dense1.biases.copy()
         best_dense2_weights = dense2.weights.copy()
         best_dense2_biases = dense2.biases.copy()
         lowest_loss = loss
     else:
-        best_dense1_weights = dense1.weights.copy()
-        best_dense1_biases = dense1.biases.copy()
-        best_dense2_weights = dense2.weights.copy()
-        best_dense2_biases = dense2.biases.copy()
+        dense1.weights = best_dense1_weights.copy()
+        dense1.biases = best_dense1_biases.copy()
+        dense2.weights = best_dense2_weights.copy()
+        dense2.biases = best_dense2_biases.copy()
